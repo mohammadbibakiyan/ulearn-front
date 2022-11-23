@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function login() {
   const [login,setLogin]=useState(true);
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full  flex justify-center items-center">
       {login&&<form className="w-[400px] card py-12 px-6">
         <div className="form-input invalid">
           <label>ایمیل</label>
