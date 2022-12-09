@@ -27,6 +27,12 @@ a {
   cursor: pointer;
 }
 
+hr{
+  margin:20px 0;
+  background-color: #bbb;
+  height: 1px;
+}
+
 *{ 
   margin: 0;
   padding: 0;
@@ -70,6 +76,20 @@ a {
 
 ::placeholder{
   font-size: 0.875rem;
+}
+
+.course-details-title{
+  font-weight: 500;
+  line-height: 1.3;
+  color: #31344b;
+}
+.course-details-body{
+  margin-right: 1rem !important;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: justify;
+  color: #44476A;
+  margin: 12px 0;
 }
 
 /************** form style **************/
@@ -176,6 +196,29 @@ a {
   margin-top: auto;
 }
 
+.cart-card{
+  display: grid;
+  margin-bottom: 1.5rem;
+  grid-template-columns: repeat(2,1fr);
+  word-wrap: break-word;
+  background-color: #E3E4E8;
+  max-height: 20rem;
+  background-clip: border-box;
+  border: 0.0625rem solid rgba(243, 247, 250, 0.05);
+  border-radius: 0.55rem;
+  overflow: hidden;
+  box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff !important;
+}
+.cart-card-header{
+  overflow: hidden;
+  border-radius: 0.55rem;
+}
+.cart-card-header>img{
+
+}
+.cart-card-body{
+  padding: 1rem;
+}
 /************** button style **************/
 .btn {
   display: inline-block;
@@ -253,4 +296,9 @@ a {
 .footer{
   font-size: 0.875rem;
   color: #44476A;
+}
+
+.error-message{
+  color:#A91E2C;
+  font-size: 0.785rem;
 }

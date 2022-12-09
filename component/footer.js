@@ -5,9 +5,9 @@ const Footer=()=>{
                 <div>
                     <p className="font-light mb-4">یولرن یک پلتفرم کاملا متفاوت در زمینه یادگیری و آموزش بوده تا بتواند برای دانشجویان فرصتی برای یادگیری و آمادگی برای ورورد به بازار کار پدید بیاورد. </p>
                     <div className="flex gap-2">
-                        <div className="rounded-full btn-icon-social"><img src="./icons/instagram.svg"/></div>
-                        <div className="rounded-full btn-icon-social"><img src="./icons/facebook.svg"/></div>
-                        <div className="rounded-full btn-icon-social"><img src="./icons/twitter.svg"/></div>
+                        <div className="rounded-full btn-icon-social"><img src="/icons/instagram.svg"/></div>
+                        <div className="rounded-full btn-icon-social"><img src="/icons/facebook.svg"/></div>
+                        <div className="rounded-full btn-icon-social"><img src="/icons/twitter.svg"/></div>
                     </div>
                 </div>
                 <div>

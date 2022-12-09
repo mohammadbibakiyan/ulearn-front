@@ -1,47 +1,54 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
+import UseValidation from "./../hooks/useValidation";
+
 export default function login() {
-  const [login,setLogin]=useState(true);
+  const [errorMessage,setErrorMessage]=useState("");
+  const router=useRouter();
+  const {error:emailError,touch:emailTouch,chengeHandler:emailChengeHandler,touchHandler:emailTouchHandler,value:emailValue}=UseValidation(value=>!value.trim().includes("@"));
+  const {error:passwordError,touch:passwordTouch,chengeHandler:passwordChengeHandler,touchHandler:passwordTouchHandler,value:passwordValue}=UseValidation(value=>value.trim().length<8);
+  const submitLoginForm = async (e) => {
+    e.preventDefault();
+      try {
+        const response = await fetch("http://127.0.0.1:4000/api/v1/user/login", {
+          method: "POST",
+          credentials:"include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email:emailValue, password:passwordValue }),
+        });
+        const result=await response.json(); 
+        if(result.status!=="success") throw new Error(result.message);
+        setErrorMessage("");
+        router.replace("/");
+      } catch (err) {
+        setErrorMessage(err.message)
+      }
+  };
+
   return (
     <div className="w-full  flex justify-center items-center">
-      {login&&<form className="w-[400px] card py-12 px-6">
-        <div className="form-input invalid">
+      <form className="w-[400px] card py-12 px-6" onSubmit={submitLoginForm}>
+        <div className={`form-input ${emailError&&emailTouch&&"invalid"} ${!emailError&&emailTouch&&"valid"}`}>
           <label>ایمیل</label>
-          <input type="email" placeholder="ایمیل"/>
-          <small>ایمیل را به درستی وارد کنید</small>
+          <input type="email" placeholder="ایمیل" onChange={emailChengeHandler} value={emailValue} onBlur={emailTouchHandler}/>
+          {/* <small>ایمیل را به درستی وارد کنید</small> */}
         </div>
-        <div className="form-input valid">
+        <div className={`form-input ${passwordError&&passwordTouch&&"invalid"} ${!passwordError&&passwordTouch&&"valid"}`}>
           <label>پسورد</label>
-          <input type="password" placeholder="پسورد"/>
-          <small></small>
+          <input type="password" placeholder="پسورد" onChange={passwordChengeHandler} value={passwordValue} onBlur={passwordTouchHandler} />
+          {/* <small></small> */}
         </div>
-        <button className="btn btn-primary disable mt-4">ورود</button>
-        <span className="text-sm mt-6">ثبت نام نکرده اید؟ <a className="font-semibold" onClick={()=>setLogin(false)}>ایجاد حساب کاربری</a></span>
-      </form>}
-      {!login&&<form className="w-[400px] card py-12 px-6">
-        <div className="form-input">
-          <label>نام و نام خانوادگی</label>
-          <input placeholder="نام و نام خانوادگی"/>
-          <small></small>
-        </div>
-        <div className="form-input">
-          <label>ایمیل</label>
-          <input placeholder="ایمیل"/>
-          <small></small>
-        </div>
-        <div className="form-input">
-          <label>پسورد</label>
-          <input type="password" placeholder="پسورد"/>
-          <small></small>
-        </div>
-        <div className="form-input">
-          <label>تایید پسورد</label>
-          <input type="password" placeholder="تایید پسورد"/>
-          <small></small>
-        </div>
-        <button className="btn btn-primary mt-4">ثبت نام</button>
-        <span className="text-sm mt-6">از قبل حساب دارید؟ <a className="font-semibold" onClick={()=>setLogin(true)}>وارد شوید</a></span>
-      </form>}
+        <button className={`btn btn-primary ${(emailError||passwordError)&&"disable"} mt-4`}>ورود</button>
+        <div className="error-message mt-4">{errorMessage}</div>
+        <span className="text-sm mt-6">
+          ثبت نام نکرده اید؟{" "}
+          <Link href="/signup"><span className="font-semibold">ایجاد حساب کاربری</span></Link>
+        </span>
+      </form>
     </div>
   );
 }
