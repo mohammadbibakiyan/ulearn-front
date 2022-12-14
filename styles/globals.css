@@ -145,7 +145,28 @@ hr{
   color:#18634B;
 }
 
-
+select{
+  height: 40px;
+  font-size: 1rem;
+  padding: 0 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #44476A;
+  background: var(--bg-color);
+  box-shadow: var(--box-shadow-inset);
+  transition: box-shadow .2s ease-in-out;
+}
+textarea{
+  height: 140px;
+  font-size: 1rem;
+  padding: 16px 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #44476A;
+  background: var(--bg-color);
+  box-shadow: var(--box-shadow-inset);
+  transition: box-shadow .2s ease-in-out;
+}
 /************** card style **************/
 .card{
   position: relative;
