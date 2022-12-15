@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
+import {Notyf} from "notyf";
 import UseValidation from "./../hooks/useValidation";
 
 export default function login() {
+  const notyf=new Notyf();
   const [errorMessage,setErrorMessage]=useState("");
   const router=useRouter();
   const {error:emailError,touch:emailTouch,chengeHandler:emailChengeHandler,touchHandler:emailTouchHandler,value:emailValue}=UseValidation(value=>!value.trim().includes("@"));
@@ -23,6 +24,7 @@ export default function login() {
         const result=await response.json(); 
         if(result.status!=="success") throw new Error(result.message);
         setErrorMessage("");
+        notyf.success("ورود با موفقیت انجام شد")
         router.replace("/");
       } catch (err) {
         setErrorMessage(err.message)

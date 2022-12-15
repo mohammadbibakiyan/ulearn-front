@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import {Notyf} from "notyf";
 const categories= [
     {
         _id: "6393934a82b1b44a2d639f38",
@@ -95,6 +95,7 @@ const categories= [
 ];
 
 const CreateCourse=()=>{
+    const notyf=new Notyf();
     const [categoryIndex,setCategoryIndex]=useState(0);
     const categoryChange=(event)=>{
         const index=categories.findIndex(e=> e._id==event.target.value);
@@ -113,7 +114,10 @@ const CreateCourse=()=>{
             }
           );
           const result = await response.json();
+          if(result.status!=="success") throw new Error(result.message);
+          notyf.success("دوره با موفقیت افزوده شد")
         }catch(err){
+            notyf.error("مشکلی پیش آمده مجدد تلاش کنید")
             console.log(err);
         }
     }

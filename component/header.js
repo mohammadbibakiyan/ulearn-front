@@ -13,7 +13,7 @@ const Header=()=>{
                     </ul>
                 </div>
                 <div className="flex gap-3">
-                    <Link href="/cart"><img src="/icons/cart.svg" className="btn w-12 btn-icon-only" alt="ulearn logo"/></Link>
+                    {/* <Link href="/cart"><img src="/icons/cart.svg" className="btn w-12 btn-icon-only" alt="ulearn logo"/></Link> */}
                     <Link href="/login"><img src="/icons/person.svg" className="btn w-12 btn-icon-only" alt="ulearn logo"/></Link>
                 </div>
             </nav>
