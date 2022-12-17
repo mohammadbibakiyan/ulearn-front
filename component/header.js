@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 const Header=()=>{
+    const router=useRouter();
+    const login=useSelector(state=>state.login.auth);
+
+    const loginHandler=()=>{
+        if(login)router.replace("/profile/user");
+        if(!login)router.replace("/login");
+    }
     return(
         <div className="py-4 shadow-soft mb-8">
             <nav className="max-w-[1280px] mx-auto flex justify-between items-center">
@@ -14,7 +23,7 @@ const Header=()=>{
                 </div>
                 <div className="flex gap-3">
                     {/* <Link href="/cart"><img src="/icons/cart.svg" className="btn w-12 btn-icon-only" alt="ulearn logo"/></Link> */}
-                    <Link href="/login"><img src="/icons/person.svg" className="btn w-12 btn-icon-only" alt="ulearn logo"/></Link>
+                    <img onClick={loginHandler} src="/icons/person.svg" className="btn w-12 btn-icon-only" alt="ulearn logo"/>
                 </div>
             </nav>
         </div>

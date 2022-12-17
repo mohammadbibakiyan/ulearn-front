@@ -2,10 +2,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {Notyf} from "notyf";
+import { useDispatch} from 'react-redux';
+import {loginActions} from "./../store/store";
 import UseValidation from "./../hooks/useValidation";
 
+
+
 export default function login() {
-  const notyf=new Notyf();
+  // const notyf=new Notyf();
+  const dispatch=useDispatch();
   const [errorMessage,setErrorMessage]=useState("");
   const router=useRouter();
   const {error:emailError,touch:emailTouch,chengeHandler:emailChengeHandler,touchHandler:emailTouchHandler,value:emailValue}=UseValidation(value=>!value.trim().includes("@"));
@@ -24,7 +29,8 @@ export default function login() {
         const result=await response.json(); 
         if(result.status!=="success") throw new Error(result.message);
         setErrorMessage("");
-        notyf.success("ورود با موفقیت انجام شد")
+        // notyf.success("ورود با موفقیت انجام شد");
+        dispatch(loginActions.login());
         router.replace("/");
       } catch (err) {
         setErrorMessage(err.message)

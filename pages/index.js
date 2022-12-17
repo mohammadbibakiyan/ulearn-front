@@ -38,7 +38,6 @@ export default function Home() {
         }
       );
       const result = await response.json();
-      console.log(result);
       setCourses(result.data);
     }
     fetchData().catch((err)=>console.log(err))

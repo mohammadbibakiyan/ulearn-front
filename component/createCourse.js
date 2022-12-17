@@ -133,13 +133,13 @@ const CreateCourse=()=>{
                 <div className={`form-input`}>
                     <label htmlFor="category">دسته بندی</label>
                     <select name="" id="category" onChange={categoryChange}>
-                        {categories.map(e=><option value={e._id}>{e.title}</option>)}
+                        {categories.map(e=><option key={e._id} value={e._id}>{e.title}</option>)}
                     </select>
                 </div>
                 <div className={`form-input`}>
                 <label htmlFor="sub_category">/</label>
                     <select name="category" id="sub_category">
-                        {categories[categoryIndex].children.map(e=><option value={e._id}>{e.title}</option>)}
+                        {categories[categoryIndex].children.map(e=><option key={e._id} value={e._id}>{e.title}</option>)}
                     </select>
                 </div>
 
