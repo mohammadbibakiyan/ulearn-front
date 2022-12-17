@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import {Notyf} from "notyf"
+import {Notyf} from "notyf";
+import { useDispatch} from 'react-redux';
+import {loginActions} from "./../store/store";
 import UseValidation from "../hooks/useValidation";
 
 export default function SignIn(){
     const notyf=new Notyf();
+    const dispatch=useDispatch();
     const [errorMessage,setErrorMessage]=useState("");
     const router=useRouter();
     const {error:nameError,touch:nameTouch,chengeHandler:nameChengeHandler,touchHandler:nameTouchHandler,value:nameValue}=UseValidation(value=>value.trim().length<3);
@@ -27,7 +30,8 @@ export default function SignIn(){
         const result=await response.json(); 
         if(result.status!=="success") throw new Error(result.message);
         setErrorMessage("");
-        notyf.success("ثبت نام با موفقیت انجام شد")
+        notyf.success("ثبت نام با موفقیت انجام شد");
+        dispatch(loginActions.login());
         router.replace("/");
       } catch (err) {
         setErrorMessage(err.message)

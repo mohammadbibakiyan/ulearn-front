@@ -1,9 +1,13 @@
 import { useState,useEffect } from "react";
 import { useRouter } from "next/router";
+import {Notyf} from "notyf";
+
 const CoursesDetail=()=>{
     const router=useRouter();
+    const notyf=new Notyf();
     const [course,setCourse]=useState();
     const [loading,setLoading]=useState(true);
+
     useEffect(()=>{
       if(router.isReady){
         const fetchData = async () => {
@@ -22,6 +26,24 @@ const CoursesDetail=()=>{
       setLoading(false);}
     },[router.isReady]);
 
+    const registrationHandler=async()=>{
+        try{
+            const response = await fetch(`http://127.0.0.1:4000/api/v1/course/${router.query.id}/registration`, {
+                method: "POST",
+                credentials:"include",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            const result=await response.json(); 
+            if(result.status!=="success") throw new Error(result.message);
+            notyf.success("ثبت نام در دوره با موفقیت انجام شد");
+        }catch(err){
+            console.log(err);
+            notyf.error(err.message)
+        }
+    }
+
     return(
         <>
             {loading&&<p>loading ...</p>}
@@ -37,7 +59,7 @@ const CoursesDetail=()=>{
                                 <div className="flex items-center gap-2"><img src="/icons/money.svg" className="w-5 h-5"/><span>هزینه دوره: </span><span>{course.price} تومان</span></div>
                             </div>
                         </div>
-                        <div className="justify-self-end"><button className="btn btn-primary">ثبت نام در دوره</button></div>
+                        <div className="justify-self-end"><button className="btn btn-primary" onClick={registrationHandler}>ثبت نام در دوره</button></div>
                     </div>
                     <hr/>
                     <div>
