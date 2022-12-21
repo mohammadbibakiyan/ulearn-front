@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Notyf} from "notyf";
 import { useDispatch} from 'react-redux';
 import {loginActions} from "./../store/store";
 import UseValidation from "../hooks/useValidation";
 
+let notyf;
 export default function SignIn(){
-    const notyf=new Notyf();
     const dispatch=useDispatch();
     const [errorMessage,setErrorMessage]=useState("");
     const router=useRouter();
@@ -16,6 +16,10 @@ export default function SignIn(){
     const {error:passwordError,touch:passwordTouch,chengeHandler:passwordChengeHandler,touchHandler:passwordTouchHandler,value:passwordValue}=UseValidation(value=>value.trim().length<8);
     const {error:passwordConfirmError,touch:passwordConfirmTouch,chengeHandler:passwordConfirmChengeHandler,touchHandler:passwordConfirmTouchHandler,value:passwordConfirmValue}=UseValidation(value=>value.trim().length<8||value!==passwordValue);
   
+    useEffect(()=>{
+      notyf=new Notyf();
+    },[])
+
     const submitSignupForm=async(e)=>{
       e.preventDefault();
       try {

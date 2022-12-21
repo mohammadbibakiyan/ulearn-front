@@ -9,6 +9,8 @@
   font-style: normal;
 }
 
+
+
 body {
   direction: rtl;
   font-family:IRANSansWeb;
@@ -307,11 +309,26 @@ textarea{
   box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff !important;
 }
 
-.nav-link{
+.link{
   font-size: 400;
   font-size: 0.875rem;
   color: #31344b;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.link:hover{
+  border-radius: 0.55rem;
+  color: #31344b;
+  background-color: #e6e7ee;
+  border-color: #D1D9E6;
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #ffffff;
+}
+.link.active{
+  border-radius: 0.55rem;
+  color: #31344b;
+  background-color: #e6e7ee;
+  border-color: #D1D9E6;
+  box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #ffffff;
 }
 
 .footer{

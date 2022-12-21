@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Notyf} from "notyf";
 const categories= [
     {
@@ -94,9 +94,14 @@ const categories= [
     }
 ];
 
+let notyf;
 const CreateCourse=()=>{
-    const notyf=new Notyf();
     const [categoryIndex,setCategoryIndex]=useState(0);
+    
+    useEffect(()=>{
+        notyf=new Notyf();
+    },[])
+
     const categoryChange=(event)=>{
         const index=categories.findIndex(e=> e._id==event.target.value);
         setCategoryIndex(index)
@@ -117,10 +122,10 @@ const CreateCourse=()=>{
           if(result.status!=="success") throw new Error(result.message);
           notyf.success("دوره با موفقیت افزوده شد")
         }catch(err){
-            notyf.error("مشکلی پیش آمده مجدد تلاش کنید")
-            console.log(err);
+            notyf.error(err.message)
+            console.log(err.message);
         }
-    }
+    };
     return(
         <div className="max-w-[1280px] mx-auto card p-4">
             <h2 className="text-xl text-[#31344b]">افزودن دوره</h2>

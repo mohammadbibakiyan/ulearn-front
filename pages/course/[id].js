@@ -2,9 +2,9 @@ import { useState,useEffect } from "react";
 import { useRouter } from "next/router";
 import {Notyf} from "notyf";
 
+let notyf;
 const CoursesDetail=()=>{
     const router=useRouter();
-    const notyf=new Notyf();
     const [course,setCourse]=useState();
     const [loading,setLoading]=useState(true);
 
@@ -26,6 +26,9 @@ const CoursesDetail=()=>{
       setLoading(false);}
     },[router.isReady]);
 
+    useEffect(()=>{
+        notyf=new Notyf();
+    },[])
     const registrationHandler=async()=>{
         try{
             const response = await fetch(`http://127.0.0.1:4000/api/v1/course/${router.query.id}/registration`, {
@@ -36,11 +39,12 @@ const CoursesDetail=()=>{
                 }
             });
             const result=await response.json(); 
+            console.log(result);
             if(result.status!=="success") throw new Error(result.message);
             notyf.success("ثبت نام در دوره با موفقیت انجام شد");
         }catch(err){
-            console.log(err);
             notyf.error(err.message)
+            console.log(err.message);
         }
     }
 
