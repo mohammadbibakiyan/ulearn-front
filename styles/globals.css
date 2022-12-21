@@ -308,7 +308,6 @@ textarea{
 .shadow-soft {
   box-shadow: 6px 6px 12px #b8b9be, -6px -6px 12px #ffffff !important;
 }
-
 .link{
   font-size: 400;
   font-size: 0.875rem;
@@ -325,17 +324,15 @@ textarea{
 }
 .link.active{
   border-radius: 0.55rem;
-  color: #31344b;
+  color: #2D4CC8;
   background-color: #e6e7ee;
   border-color: #D1D9E6;
   box-shadow: inset 2px 2px 5px #b8b9be, inset -3px -3px 7px #ffffff;
 }
-
 .footer{
   font-size: 0.875rem;
   color: #44476A;
 }
-
 .error-message{
   color:#A91E2C;
   font-size: 0.785rem;
