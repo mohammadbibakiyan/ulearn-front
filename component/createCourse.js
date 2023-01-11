@@ -109,12 +109,19 @@ const CreateCourse=()=>{
     const submitAddCourseForm=async(event)=>{
         event.preventDefault();
         const courseData=Object.fromEntries([...new FormData(event.target)]);
+        const data=new FormData();
+        for (let pair of Object.entries(courseData)) {
+            data.append(`${pair[0]}`,pair[1]);
+        }
+        // data.append("photo",document.getElementById("photo").files[0]);
+        // for (let pair of Object.entries(courseData)) {
+        //     console.log(pair[0],pair[1]);
+        // }
         try{const response = await fetch(
             `http://127.0.0.1:4000/api/v1/course`,
             {
               method: "POST",
-              body: JSON.stringify(courseData),
-              headers: { "Content-Type": "application/json" },
+              body: data,
               credentials: "include",
             }
           );
