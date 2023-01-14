@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(()=>{
     const fetchData = async () => {
       const response = await fetch(
-        `https://ulearnbackend.onrender.com/api/v1/course`,
+        `https://ecstatic-chaum-x5guwy1l.iran.liara.run/api/v1/course`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

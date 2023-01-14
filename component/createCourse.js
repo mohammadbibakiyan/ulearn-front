@@ -114,7 +114,7 @@ const CreateCourse=()=>{
             data.append(`${pair[0]}`,pair[1]);
         }
         try{const response = await fetch(
-            `https://ulearnbackend.onrender.com/api/v1/course`,
+            `https://ecstatic-chaum-x5guwy1l.iran.liara.run/api/v1/course`,
             {
               method: "POST",
               body: data,

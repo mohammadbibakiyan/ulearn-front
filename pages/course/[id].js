@@ -12,7 +12,7 @@ const CoursesDetail=()=>{
       if(router.isReady){
         const fetchData = async () => {
         const response = await fetch(
-          `https://ulearnbackend.onrender.com/api/v1/course/${router.query.id}`,
+          `https://ecstatic-chaum-x5guwy1l.iran.liara.run/api/v1/course/${router.query.id}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ const CoursesDetail=()=>{
     },[])
     const registrationHandler=async()=>{
         try{
-            const response = await fetch(`https://ulearnbackend.onrender.com/api/v1/course/${router.query.id}/registration`, {
+            const response = await fetch(`https://ecstatic-chaum-x5guwy1l.iran.liara.run/api/v1/course/${router.query.id}/registration`, {
                 method: "POST",
                 credentials:"include",
                 headers: {
