@@ -6,7 +6,7 @@ const PersonalInfo=()=>{
     useEffect(()=>{
         const fetchData = async () => {
           const response = await fetch(
-            `http://127.0.0.1:4000/api/v1/user/myPersonalInfo`,
+            `https://ulearnbackend.onrender.com/api/v1/user/myPersonalInfo`,
             {
               method: "GET",
               headers: { "Content-Type": "application/json" },

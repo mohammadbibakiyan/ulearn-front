@@ -8,7 +8,7 @@ const MyCourse=()=>{
     useEffect(()=>{
         const fetchData = async () => {
           const response = await fetch(
-            `http://127.0.0.1:4000/api/v1/user/myCourse`,
+            `https://ulearnbackend.onrender.com/api/v1/user/myCourse`,
             {
               method: "GET",
               headers: { "Content-Type": "application/json" },

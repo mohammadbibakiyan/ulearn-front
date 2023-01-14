@@ -12,7 +12,7 @@ const CoursesDetail=()=>{
       if(router.isReady){
         const fetchData = async () => {
         const response = await fetch(
-          `http://127.0.0.1:4000/api/v1/course/${router.query.id}`,
+          `https://ulearnbackend.onrender.com/api/v1/course/${router.query.id}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ const CoursesDetail=()=>{
     },[])
     const registrationHandler=async()=>{
         try{
-            const response = await fetch(`http://127.0.0.1:4000/api/v1/course/${router.query.id}/registration`, {
+            const response = await fetch(`https://ulearnbackend.onrender.com/api/v1/course/${router.query.id}/registration`, {
                 method: "POST",
                 credentials:"include",
                 headers: {
