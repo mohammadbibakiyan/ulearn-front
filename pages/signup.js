@@ -27,6 +27,7 @@ export default function SignIn(){
           method: "POST",
           credentials:"include",
           headers: {
+            'Access-Control-Allow-Origin': '*',
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ email:emailValue, password:passwordValue, fullName:nameValue, passwordConfirm:passwordConfirmValue }),
