@@ -39,12 +39,10 @@ const CoursesDetail=()=>{
                 }
             });
             const result=await response.json(); 
-            console.log(result);
             if(result.status!=="success") throw new Error(result.message);
             notyf.success("ثبت نام در دوره با موفقیت انجام شد");
         }catch(err){
             notyf.error(err.message)
-            console.log(err.message);
         }
     }
 

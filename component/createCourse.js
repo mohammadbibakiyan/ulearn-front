@@ -126,7 +126,6 @@ const CreateCourse=()=>{
           notyf.success("دوره با موفقیت افزوده شد")
         }catch(err){
             notyf.error(err.message)
-            console.log(err.message);
         }
     };
     return(

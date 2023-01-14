@@ -7,7 +7,7 @@ import {loginActions} from "./../store/store";
 import UseValidation from "./../hooks/useValidation";
 
 let notyf;
-export default function login() {
+export default function Login() {
   const dispatch=useDispatch();
   const [errorMessage,setErrorMessage]=useState("");
   const router=useRouter();
